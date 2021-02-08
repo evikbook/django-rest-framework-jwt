@@ -115,7 +115,8 @@ class JSONWebTokenAuthentication(BaseAuthentication):
     @classmethod
     def prefixes_match(cls, prefix):
         authorization_header_prefix = api_settings.JWT_AUTH_HEADER_PREFIX.lower()
-
+        if authorization_header_prefix == '':
+            return True
         return smart_str(prefix.lower()) == authorization_header_prefix
 
     @classmethod
